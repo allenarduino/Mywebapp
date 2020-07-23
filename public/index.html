@@ -11,6 +11,7 @@
     <link href="css/aos.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
+    <script src="js/jquery.3.2.1.min.js"></script>
 
   </head>
   <body id="top">
@@ -44,7 +45,7 @@
         <div class="content-center">
           <div class="cc-profile-image"><a href="#"><img src="images/IMG_20190529_235302_416.jpg" alt="Image"/></a></div>
           <div class="h2 title">Allen Jones</div>
-          <p class="category text-white">Web Developer,Passionate Programmer</p><a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Contact Me</a><a class=" smooth-scroll btn btn-primary" href="#about" >About me</a>
+          <p class="category text-white">Full Stack Developer,Passionate Programmer</p><a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Contact Me</a><a class=" smooth-scroll btn btn-primary" href="#about" >About me</a>
         </div>
       </div>
       <div class="section">
@@ -62,7 +63,7 @@
         <div class="col-lg-6 col-md-12">
           <div class="card-body">
             <div class="h4 mt-0 title">About</div>
-            <p>Hello! I am Allen Jones. Web Developer,passionate programmer and an aspiring software engineer.</p>
+            <p>Hello! I am Allen Jones. Full Stack Developer,passionate programmer and an aspiring software engineer.</p>
            
           </div>
         </div>
@@ -244,9 +245,9 @@
           <div class="row">
             <div class="col-md-6">
               <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#graphic-design">
-                  <figure class="cc-effect"><img src="images/Port3.png" alt="Image"/>
+                  <figure class="cc-effect"><img src="images/social1.png" alt="Image"/>
                     <figcaption>
-                      <div class="h4">Business App</div>
+                      <div class="h4">Social Media Website</div>
                       <p>Mobile Design</p>
                     </figcaption>
                   </figure></a></div>
@@ -289,9 +290,9 @@
                     </figcaption>
                   </figure></a></div>
               <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#Photography">
-                  <figure class="cc-effect"><img src="images/Port12.png" alt="Image"/>
+                  <figure class="cc-effect"><img src="images/wap.png" alt="Image"/>
                     <figcaption>
-                      <div class="h4">Hosting site</div>
+                      <div class="h4">E-learning website</div>
                       <p>Web design</p>
                     </figcaption>
                   </figure></a></div>
@@ -502,34 +503,34 @@
                       <div class="row mb-3">
                         <div class="col">
                           <div class="input-group"><span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input class="form-control" type="text" id="name" name="name" placeholder="Name" required="required"/>
+                            <input class="form-control" class="name" type="text" id="name" name="name" placeholder="Name" required="required"/>
                           </div>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <div class="col">
                           <div class="input-group"><span class="input-group-addon"><i class="fa fa-file-text"></i></span>
-                            <input class="form-control" type="text" id="name" name="subject" placeholder="Subject" required="required"/>
+                            <input class="form-control" class="subject" type="text" id="name" name="subject" placeholder="Subject" required="required"/>
                           </div>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <div class="col">
                           <div class="input-group"><span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                            <input class="form-control" type="email" id="email"name="email" placeholder="E-mail" required="required"/>
+                            <input class="form-control" class="email" type="email" id="email"name="email" placeholder="E-mail" required="required"/>
                           </div>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <div class="col">
                           <div class="form-group">
-                            <textarea class="form-control" id="message" name="message" placeholder="Your Message" required="required"></textarea>
+                            <textarea class="form-control" class="message" id="message" name="message" placeholder="Your Message" required="required"></textarea>
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col">
-                          <button class="btn btn-primary" onclick="sent();" type="submit">Send</button>
+                          <button id="button" class="btn btn-primary"  type="submit">Send</button>
                         </div>
                       </div>
                     </form>
@@ -570,100 +571,33 @@
     <script src="js/contact.js"></script>
 
  
-
-
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
-
 <script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyCWfWdtFbf9Xlx6TjRsaXxJtOpuBuM4dyI",
-    authDomain: "merllonjones-f997d.firebaseapp.com",
-    databaseURL: "https://merllonjones-f997d.firebaseio.com",
-    projectId: "merllonjones-f997d",
-    storageBucket: "merllonjones-f997d.appspot.com",
-    messagingSenderId: "476665269558",
-    appId: "1:476665269558:web:f2bf132665f192a3713797",
-    measurementId: "G-RY5DW8VH87"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+   
+   $(document).ready(function(){
+        $("form").on("submit",function(event){
+            event.preventDefault();
+            document.getElementById("button").innerHTML="Sending....."
+            $.ajax({
+            data:{
+                name:$(".name").val(),
+                subject:$(".subject").val(),
+                email:$(".email").val(),
+                message:$(".message").val(),
+            },
+            type:"POST",
+            url:"https://jay555.pythonanywhere.com/contact_me"
+        })
+        .done(function(data){
+           
+                alert(data);
+                document.getElementById("button").innerHTML="Send"
+            
+        })
+        .catch(alert(err))
 
-
-
-// Reference messages collection
-var messagesRef = firebase.database().ref('ContactData');
-
-// Listen for form submit
-document.getElementById('contactForm').addEventListener('submit', submitForm);
-
-// Submit form
-function submitForm(e){
-  e.preventDefault();
-
-  // Get values
-  var name = getInputVal('name');
- // var company = getInputVal('company');
-  var email = getInputVal('email');
-  var subject = getInputVal('subject');
-  var message = getInputVal('message');
-
-  // Save message
-  saveMessage(name, subject, email,  message);
-
-  // Show alert
-  document.querySelector('.alert').style.display = 'block';
-
-  // Hide alert after 3 seconds
-  setTimeout(function(){
-    document.querySelector('.alert').style.display = 'none';
-  },3000);
-
-  // Clear form
-  document.getElementById('contactForm').reset();
-}
-
-// Function to get get form values
-function getInputVal(id){
-  return document.getElementById(id).value;
-}
-
-// Save message to firebase
-function saveMessage(name, subject, email,  message){
-  var newMessageRef = messagesRef.push();
-  newMessageRef.set({
-    name: name,
-    subject:subject,
-    email:email,
+    })
+        })
     
-    message:message
-  });
-
-
-
-  function sent(){
-    alert("Your message has been sent");
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
 
 
